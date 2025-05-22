@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> FourTheArtists </title>
+    <link rel="stylesheet" href="FourTheArtists.css"> 
+  </head>
+  <body>
+
+    <audio id="clickSound" src="sounds/click.wav" preload="auto"></audio>
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="FourTheArtists.html" id="home">Home</a>
+      <a href="#" data-artist="Monet">Monet</a>
+      <a href="#" data-artist="Vinci">Da Vinci</a>
+      <a href="#" data-artist="Picasso">Picasso</a>
+      <a href="#" data-artist="Gogh">Van Gogh</a>
+    </div>
+     
+     <div  id="main"> 
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    
+     <h1> Get to know a little more about four of the most famous artists! </h1>
+
+      <h2> Choose an artist: </h2>
+      <form id="artistForm">
+        <input type="radio" name="artist" id="Monet" value="Monet"> Claude Monet<br></br>
+        <input type="radio" name="artist" id="Vinci" value="Vinci"> Leonardo Da Vinci<br></br>
+        <input type="radio" name="artist" id="Picasso" value="Picasso"> Pablo Picasso<br></br>
+        <input type="radio" name="artist" id="Gough" value="Gogh"> Vincent Van Gogh<br></br>
+      </form>
+     </div>
+
+     <div id="radioForm">
+      <div id="MonetSection"></div>
+      <div id="VinciSection"></div>
+      <div id="PicassoSection"></div>
+      <div id="GoghSection"></div>
+    </div>
+
+     <div id="Information"></div>
+     <div id="Gallery"></div>
+
+     <canvas id="canvas" style="display: none;"></canvas>
+
+
+    <script src="FourTheArtists.js"> </script>
+    
+
+
+    </body>
+</html>
+
+
+
