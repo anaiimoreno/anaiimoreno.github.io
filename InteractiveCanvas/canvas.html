@@ -16,6 +16,28 @@
     <label><input type="radio" name="background" value="bg3"> Pool</label>
   </form>
 
+  <form id="position">
+    <label for="xPos">Move horizontally (X): </label>
+    <input type="range" id="xPos" name="xPos" min="0" max="460" value="230">
+    <br><br>
+    <label for="yPos">Move vertically (Y): </label>
+    <input type="range" id="yPos" name="yPos" min="0" max="260" value="150">
+  </form>
+  
+  <form id="showItems">
+    <label><input type="checkbox" name="item" value="item1" checked> Show Item 1</label>
+    <label><input type="checkbox" name="item" value="item2" checked> Show Item 2</label>
+    <label><input type="checkbox" name="item" value="item3" checked> Show Item 3</label>
+  </form>
+  
+  <div id="sound">
+    <button type="button" id="sound1">Play Sound 1</button>
+    <button type="button" id="sound2">Play Sound 2</button>
+    <button type="button" id="sound3">Play Sound 3</button>
+  </div>
+  
+  
+
   <canvas id="sceneCanvas" width="500" height="300"></canvas>
 
   <script src="canvas.js"></script>

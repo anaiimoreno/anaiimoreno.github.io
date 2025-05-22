@@ -7,19 +7,100 @@ const backgrounds = {
   bg3: "https://media.istockphoto.com/id/178386070/photo/sinkhole-in-mexico-with-dangling-vines.jpg?s=612x612&w=0&k=20&c=FAr-0f14ijKuoJ9F8oB_TK1Ft5IB2HxByFajmd7QuDc="
 };
 
-function loadBackground(imageUrl) {
+let character = {
+  x: 230,  
+  y: 150,   
+  size: 40
+};
+
+function loadBackground(imageUrl, callback) {
   const img = new Image();
   img.onload = () => {
     context.drawImage(img, 0, 0, canvas.width, canvas.height);
+    if(callback) callback();
   };
   img.src = imageUrl;
 }
 
-document.getElementById("bgForm").addEventListener("change", (e) => {
-  if (e.target.name === "background") {
-    loadBackground(backgrounds[e.target.value]);
+
+function drawCharacter() {
+  context.beginPath();
+  context.fillStyle = "black";
+  context.arc(character.x + character.size/2, character.y + character.size/2, character.size/2, 0, Math.PI * 2);
+  context.fill();
+}
+
+
+function redraw() {
+  loadBackground(backgrounds[document.querySelector('input[name="background"]:checked').value], drawCharacter);
+}
+
+
+document.getElementById("bgForm").addEventListener("change", () => {
+  redraw();
+});
+
+
+document.getElementById("position").addEventListener("input", (e) => {
+  if (e.target.id === "xPos") {
+    character.x = parseInt(e.target.value);
+  } else if (e.target.id === "yPos") {
+    character.y = parseInt(e.target.value);
+  }
+  redraw();
+});
+
+redraw();
+
+const items = {
+  item1: { visible: true, x: 50, y: 50, color: "pink" },
+  item2: { visible: true, x: 150, y: 70, color: "red" },
+  item3: { visible: true, x: 300, y: 100, color: "white" }
+};
+
+function drawItems() {
+  for (const [key, item] of Object.entries(items)) {
+    if (item.visible) {
+      context.fillStyle = item.color;
+      context.fillRect(item.x, item.y, 30, 30);
+    }
+  }
+}
+
+document.getElementById("showItems").addEventListener("change", (e) => {
+  if (e.target.name === "item") {
+    items[e.target.value].visible = e.target.checked;
+    redraw();
   }
 });
 
-// Load default background
-loadBackground(backgrounds.bg1);
+// Modify redraw() to also draw items
+function redraw() {
+  loadBackground(backgrounds[document.querySelector('input[name="background"]:checked').value], () => {
+    drawCharacter();
+    drawItems();
+  });
+}
+
+const sounds = {
+  sound1: new Audio("sounds/beach.mp3"),
+  sound2: new Audio("sounds/wind.mp3"),
+  sound3: new Audio("sounds/water.mp3")
+};
+
+document.getElementById("sound1").addEventListener("click", () => {
+  sounds.sound1.play();
+});
+
+document.getElementById("sound2").addEventListener("click", () => {
+  sounds.sound2.play();
+});
+
+document.getElementById("sound3").addEventListener("click", () => {
+  sounds.sound3.play();
+});
+
+;
+
+
+
